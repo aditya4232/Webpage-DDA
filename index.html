@@ -3,31 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Extension Settings</title>
+  <title>Data Duplication Alert - Settings</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      margin: 50px auto;
+      width: 80%;
+      text-align: center;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Configure Duplicate Alert Settings</h1>
-  <form id="settingsForm">
-    <label for="threshold">Duplicate Alert Threshold:</label>
-    <input type="number" id="threshold" name="threshold" min="1" value="1">
-    <button type="submit">Save Settings</button>
-  </form>
-  <p id="status"></p>
+  <div class="container">
+    <h1>Settings</h1>
+    <p>Configure the duplicate download detection system below:</p>
+    <button id="update-settings">Update Settings</button>
+  </div>
 
   <script>
-    document.getElementById('settingsForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const threshold = parseInt(document.getElementById('threshold').value, 10);
+    document.getElementById('update-settings').addEventListener('click', () => {
+      // Example settings to send to the extension
+      const settings = {
+        detectionMode: 'strict',
+        notification: true,
+      };
 
-      // Send a message to the extension to update the settings
-      if (chrome && chrome.runtime) {
-        chrome.runtime.sendMessage(
-          { type: 'updateSettings', threshold: threshold },
-          function(response) {
-            document.getElementById('status').textContent = response.status || 'Failed to update settings.';
-          }
-        );
-      }
+      chrome.runtime.sendMessage('your-extension-id', { type: 'updateSettings', settings }, (response) => {
+        if (response.status === 'success') {
+          alert('Settings updated successfully!');
+        }
+      });
     });
   </script>
 </body>
