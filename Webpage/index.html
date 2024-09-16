@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duplication Detection System</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Download Duplication Alert System</h2>
+    <section>
+      <h3>Settings</h3>
+      <div>
+        <label>Download Limit per User:</label>
+        <input type="number" id="download-limit" min="1" max="100">
+      </div>
+      <div>
+        <label>Rate Limiting:</label>
+        <input type="checkbox" id="rate-limit">
+      </div>
+    </section>
+
+    <section>
+      <h3>Reports</h3>
+      <table id="logs-table">
+        <thead>
+          <tr>
+            <th>File Name</th>
+            <th>User</th>
+            <th>Download Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Logs will be injected here -->
+        </tbody>
+      </table>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplication Alert System Dashboard</title>
+    <link rel="stylesheet" href="style1.css">
+  </head>
+  <body>
+    <div id="login-section">
+      <h2>Login to Duplication Alert System</h2>
+      <button id="login-btn">Login with Google</button>
+    </div>
+    <div id="dashboard" style="display: none;">
+      <h2>Welcome to the Dashboard</h2>
+      <p>Manage file downloads and duplication alerts.</p>
+      <button id="logout-btn">Logout</button>
+    </div>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
+
