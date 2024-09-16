@@ -12,14 +12,22 @@
     <input type="number" id="threshold" name="threshold" min="1" value="1">
     <button type="submit">Save Settings</button>
   </form>
+  <p id="status"></p>
+
   <script>
     document.getElementById('settingsForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const threshold = document.getElementById('threshold').value;
+      const threshold = parseInt(document.getElementById('threshold').value, 10);
 
-      chrome.storage.sync.set({ threshold: threshold }, () => {
-        alert('Settings updated!');
-      });
+      // Send a message to the extension to update the settings
+      if (chrome && chrome.runtime) {
+        chrome.runtime.sendMessage(
+          { type: 'updateSettings', threshold: threshold },
+          function(response) {
+            document.getElementById('status').textContent = response.status || 'Failed to update settings.';
+          }
+        );
+      }
     });
   </script>
 </body>
