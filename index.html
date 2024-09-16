@@ -1,39 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Management System</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="YOUR_GOOGLE_CLIENT_ID">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extension Settings</title>
 </head>
 <body>
-    <header>
-        <h1>File Management System Settings</h1>
-    </header>
-    
-    <section id="login-section">
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    </section>
+  <h1>Configure Duplicate Alert Settings</h1>
+  <form id="settingsForm">
+    <label for="threshold">Duplicate Alert Threshold:</label>
+    <input type="number" id="threshold" name="threshold" min="1" value="1">
+    <button type="submit">Save Settings</button>
+  </form>
+  <script>
+    document.getElementById('settingsForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const threshold = document.getElementById('threshold').value;
 
-    <section id="settings">
-        <h2>Settings</h2>
-        <form id="settings-form">
-            <label for="rateLimit">Rate Limit (downloads per minute):</label>
-            <input type="number" id="rateLimit" name="rateLimit" min="1" value="10">
-
-            <label for="notification">Enable Notifications:</label>
-            <input type="checkbox" id="notification" name="notification" checked>
-
-            <button type="button" id="save-settings">Save Settings</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>© 2023 File Management System</p>
-    </footer>
-
-    <script src="app.js"></script>
+      chrome.storage.sync.set({ threshold: threshold }, () => {
+        alert('Settings updated!');
+      });
+    });
+  </script>
 </body>
 </html>
