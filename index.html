@@ -3,26 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duplication Detection Settings</title>
+    <title>File Management System</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="YOUR_GOOGLE_CLIENT_ID">
 </head>
 <body>
-    <h1>Duplication Detection Settings</h1>
-    <!-- Google Login Button -->
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <button onclick="signOut()">Sign out</button>
+    <header>
+        <h1>File Management System Settings</h1>
+    </header>
+    
+    <section id="login-section">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </section>
 
-    <!-- User Settings Form -->
-    <div id="settings">
-        <h2>Your Settings</h2>
+    <section id="settings">
+        <h2>Settings</h2>
         <form id="settings-form">
-            <label for="limit">Download Limit:</label>
-            <input type="number" id="limit" name="limit" min="1" max="10">
-            <button type="submit">Save Settings</button>
-        </form>
-    </div>
+            <label for="rateLimit">Rate Limit (downloads per minute):</label>
+            <input type="number" id="rateLimit" name="rateLimit" min="1" value="10">
 
-    <script src="main.js"></script>
+            <label for="notification">Enable Notifications:</label>
+            <input type="checkbox" id="notification" name="notification" checked>
+
+            <button type="button" id="save-settings">Save Settings</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2023 File Management System</p>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
