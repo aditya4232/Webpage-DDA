@@ -1,73 +1,158 @@
+/* General Styling */
 body {
-    background: #1a1a2e;
-    color: #fff;
-    font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #0d1b2a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#intro {
-    text-align: center;
-    padding: 50px;
-}
-
-h1, h2 {
+h1, h2, h3 {
     color: #00b4d8;
 }
 
 p {
-    color: #a9a9a9;
+    color: #e0fbfc;
 }
 
-.btn-group {
+section {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Button Styling (Modern Buttons) */
+/* From Uiverse.io by adamgiebl */
+button {
+  --green: #1BFD9C;
+  font-size: 15px;
+  padding: 0.7em 2.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
+  margin: 10px;
+}
+
+button:hover {
+  color: #82ffc9;
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+}
+
+button:before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform .4s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
+}
+
+button:hover:before {
+  transform: translateX(15em);
+}
+
+/* Report Section */
+#reportSection {
+    padding: 50px;
+    background: #1c3b57;
+    color: white;
+    display: none; /* Initially hidden */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#reportSection.visible {
+    display: block;
+    opacity: 1;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 20px;
+    background-color: #102a43;
+    border-radius: 10px;
 }
 
-.btn-demo, .btn-download, .btn-upload, .btn-delete {
-    background: #537ec5;
-    padding: 10px 20px;
+table, th, td {
+    border: 1px solid #00b4d8;
+    padding: 15px;
+}
+
+th {
+    background: #0077b6;
+}
+
+td {
+    text-align: center;
+    color: #caf0f8;
+}
+
+.features {
+    margin-top: 30px;
+}
+
+.features h3 {
+    color: #90e0ef;
+}
+
+.features ul {
+    list-style-type: none;
+    padding: 0;
+    color: #caf0f8;
+}
+
+.features li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.btn-download-pdf {
+    background: #00b4d8;
+    padding: 15px 30px;
     border: none;
-    color: #fff;
+    color: white;
     cursor: pointer;
-    margin: 5px;
+    margin-top: 20px;
+    border-radius: 0.6em;
+    transition: all 0.3s;
 }
 
-.btn-demo:hover, .btn-download:hover, .btn-upload:hover, .btn-delete:hover {
-    background: #3944bc;
+.btn-download-pdf:hover {
+    background: #0096c7;
+    box-shadow: 0 0 15px rgba(0, 182, 216, 0.5);
 }
 
-.tabs {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-.tablinks {
-    padding: 10px 20px;
-    background: #3944bc;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin: 0 10px;
-}
-
-.tabcontent {
+/* Transition for report section */
+#reportSection {
+    padding: 30px;
+    background-color: rgba(16, 42, 67, 0.9);
+    border-radius: 10px;
+    margin-top: 20px;
+    transition: all 0.5s ease-in-out;
+    transform: translateY(50px);
+    opacity: 0;
     display: none;
-    padding: 20px;
 }
 
-.tabcontent.active {
+#reportSection.visible {
+    opacity: 1;
+    transform: translateY(0);
     display: block;
 }
 
-#fileReport div {
-    margin: 10px 0;
-}
-
-.duplicate {
-    color: red;
-}
-
-.original {
-    color: blue;
-}

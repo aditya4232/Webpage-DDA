@@ -14,7 +14,7 @@ function openTool(evt, toolName) {
     evt.currentTarget.className += " active";
 }
 
-// Generate report for uploaded files, including VirusTotal API check
+// Generate report and display it in the table
 async function generateReport() {
     const files = document.getElementById("fileUpload").files;
     const fileDetails = [];
@@ -45,17 +45,26 @@ async function generateReport() {
         });
     }
 
-    const report = fileDetails.map(file => 
-        `<div class="${file.isDuplicate ? 'duplicate' : 'original'}">
-            File: ${file.name} - Type: ${file.type} - Size: ${file.size}
-            <br>Status: ${file.virusResult}
-        </div>`
-    ).join("");
+    const reportBody = document.getElementById("fileReportBody");
+    reportBody.innerHTML = ""; // Clear existing rows
 
-    document.getElementById("fileReport").innerHTML = report;
+    fileDetails.forEach(file => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${file.name}</td>
+            <td>${file.type}</td>
+            <td>${file.size}</td>
+            <td>${file.virusResult}</td>
+        `;
+        reportBody.appendChild(row);
+    });
+
+    // Show the report section with transition
+    const reportSection = document.getElementById("reportSection");
+    reportSection.classList.add("visible");
 }
 
-// Check file safety using VirusTotal API (hash-based or content-based)
+// Check file safety using VirusTotal API
 async function checkFileSafety(file) {
     const fileArrayBuffer = await file.arrayBuffer();
     const hashBuffer = await crypto.subtle.digest('SHA-256', fileArrayBuffer);
@@ -84,23 +93,18 @@ async function checkFileSafety(file) {
     }
 }
 
-// Compress and delete duplicates (dummy implementation)
-function deleteDuplicates() {
-    const files = document.getElementById("duplicateFileUpload").files;
-    const zip = new JSZip();
+// Download report as PDF with watermark
+function downloadReport() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
     
-    for (let i = 0; i < files.length; i++) {
-        if (!isDuplicate(files[i])) {
-            zip.file(files[i].name, files[i]);
-        }
-    }
+    doc.text("Comprehensive File Report", 10, 10);
+    doc.autoTable({ html: '#fileReportTable', startY: 20 });
 
-    zip.generateAsync({ type: "blob" }).then(function (content) {
-        saveAs(content, "cleaned_files.zip");
-    });
-}
+    // Add watermark
+    doc.setTextColor(150);
+    doc.setFontSize(40);
+    doc.text("TEAMSPARK", 35, 150, { angle: 45 });
 
-function isDuplicate(file) {
-    // Implement your duplicate detection logic here
-    return false; 
+    doc.save('report.pdf');
 }

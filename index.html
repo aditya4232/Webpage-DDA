@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duplicate Download Detection</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
 </head>
 <body>
     <section id="intro">
@@ -31,7 +27,6 @@
             <h2>Upload Files</h2>
             <input type="file" id="fileUpload" multiple />
             <button class="btn-upload" onclick="generateReport()">Generate Report</button>
-            <div id="fileReport"></div>
         </div>
 
         <div id="DuplicateDeletion" class="tabcontent">
@@ -41,6 +36,38 @@
         </div>
     </section>
 
+    <section id="reportSection" class="hidden">
+        <h2>Comprehensive File Report</h2>
+        <table id="fileReportTable">
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>File Type</th>
+                    <th>File Size</th>
+                    <th>VirusTotal Status</th>
+                </tr>
+            </thead>
+            <tbody id="fileReportBody">
+                <!-- Rows will be inserted here dynamically -->
+            </tbody>
+        </table>
+
+        <div class="features">
+            <h3>Additional Features</h3>
+            <ul>
+                <li>Comprehensive File Scan</li>
+                <li>File Reputation by Hash</li>
+                <li>URL Security Scan</li>
+                <li>Detailed URL Report</li>
+                <li>Domain Reputation Check</li>
+                <li>IP Address Security Report</li>
+            </ul>
+        </div>
+
+        <button class="btn-download-pdf" onclick="downloadReport()">Download PDF Report</button>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPDF/2.5.1/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
