@@ -1,0 +1,73 @@
+body {
+    background: #1a1a2e;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#intro {
+    text-align: center;
+    padding: 50px;
+}
+
+h1, h2 {
+    color: #00b4d8;
+}
+
+p {
+    color: #a9a9a9;
+}
+
+.btn-group {
+    margin-top: 20px;
+}
+
+.btn-demo, .btn-download, .btn-upload, .btn-delete {
+    background: #537ec5;
+    padding: 10px 20px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn-demo:hover, .btn-download:hover, .btn-upload:hover, .btn-delete:hover {
+    background: #3944bc;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.tablinks {
+    padding: 10px 20px;
+    background: #3944bc;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+}
+
+.tabcontent.active {
+    display: block;
+}
+
+#fileReport div {
+    margin: 10px 0;
+}
+
+.duplicate {
+    color: red;
+}
+
+.original {
+    color: blue;
+}
